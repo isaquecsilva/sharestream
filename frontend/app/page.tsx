@@ -41,17 +41,17 @@ export default function Home() {
     return (
     <>
     <Header {...{ theme, updateTheme }} data-theme={theme} />
-    <div className="w-full h-full py-6" data-theme={theme}>
+    <div className="w-full min-h-screen py-6" data-theme={theme}>
       <Head title={"All Videos"} href="/" />
       <main className="flex items-center justify-center">
         <div className="min-w-9/12 max-w-10/12 flex flex-row flex-wrap p-8 gap-8 items-center justify-center">
-          {videos.sort(orderByViewsCount).map(props => {
+          {videos.length > 0 ? videos.sort(orderByViewsCount).map(props => {
             return (
               <ThemeContext.Provider value={theme} key={props.hash}>
                 <VideoCard {...props} key={props.hash} />
               </ThemeContext.Provider>
             )
-          })}
+          }) : 'No Videos'}
         </div>
       </main>
     </div>
